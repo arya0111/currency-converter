@@ -1,0 +1,14 @@
+# Protect API keys and private configuration
+/config.php
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/

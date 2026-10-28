@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Currency Converter</h1>
+
+    <!-- Currency Converter Form -->
+    <form id="currency-form">
+        <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+        
+        <select id="from_currency" name="from_currency" required>
+            <option value="USD">USD - United States Dollar</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="BRL">BRL - Brazilian Real</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="TRY">TRY - Turkish Lira</option>
+        </select>
+
+        <select id="to_currency" name="to_currency" required>
+            <option value="USD">USD - United States Dollar</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="BRL">BRL - Brazilian Real</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="TRY">TRY - Turkish Lira</option>
+        </select>
+
+        <button type="submit">Convert</button>
+    </form>
+
+    <!-- Result -->
+    <div class="result" id="conversion-result"></div>
+
+<!-- Button at the Bottom of the Page -->
+
+
+<!-- JavaScript to handle AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#currency-form').submit(function(event) {
+            event.preventDefault();  // Prevent form from submitting normally
+            
+            var formData = $(this).serialize();  // Serialize form data
+
+            // Send AJAX request
+            $.ajax({
+                url: 'convert.php',   // The PHP script that handles conversion
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Display the result in the 'conversion-result' div
+                    $('#conversion-result').html(response);
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
